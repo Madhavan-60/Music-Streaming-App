@@ -7,18 +7,19 @@ const MiniPlayer = () => {
 
   return (
     <div
-      style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        background: "#222",
-        color: "#fff",
-        padding: "10px",
-        display: "flex",
-        justifyContent: "space-between",
-      }}
-    >
+  style={{
+    position: "fixed",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    background: "#111827",
+    color: "#fff",
+    padding: "12px 20px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  }}
+>
       <div>
         <strong>{currentTrack.title}</strong>
         <p style={{ margin: 0 }}>{currentTrack.artist}</p>

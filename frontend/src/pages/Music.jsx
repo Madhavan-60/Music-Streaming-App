@@ -1,41 +1,53 @@
 import { useEffect, useState } from "react";
 import { getTracks } from "../services/musicService";
 import { useAudioPlayer } from "../context/AudioPlayerContext";
+import MusicCard from "../components/MusicCard";
 
 const Music = () => {
   const [tracks, setTracks] = useState([]);
-  const { playTrack, pauseTrack, currentTrack, isPlaying } = useAudioPlayer();
+  const [category, setCategory] = useState("All");
+
+  const { playTrack, pauseTrack, currentTrack, isPlaying } =
+    useAudioPlayer();
 
   useEffect(() => {
     getTracks().then(setTracks).catch(console.error);
   }, []);
 
+  const categories = ["All", ...new Set(tracks.map((t) => t.category))];
+
+  const filteredTracks =
+    category === "All"
+      ? tracks
+      : tracks.filter((t) => t.category === category);
+
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px", paddingBottom: "80px" }}>
       <h2>Music</h2>
 
-      {tracks.map((track) => (
-        <div
-          key={track.id}
-          style={{
-            border: "1px solid #ccc",
-            padding: "10px",
-            marginBottom: "10px",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
+      {/* CATEGORY FILTER */}
+      <div style={{ marginBottom: "15px" }}>
+        <label>Category: </label>
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
         >
-          <div>
-            <strong>{track.title}</strong>
-            <p>{track.artist}</p>
-          </div>
+          {categories.map((cat) => (
+            <option key={cat}>{cat}</option>
+          ))}
+        </select>
+      </div>
 
-          {currentTrack?.id === track.id && isPlaying ? (
-            <button onClick={pauseTrack}>Pause</button>
-          ) : (
-            <button onClick={() => playTrack(track)}>Play</button>
-          )}
-        </div>
+      {/* MUSIC LIST */}
+      {filteredTracks.map((track) => (
+        <MusicCard
+          key={track.id}
+          track={track}
+          isActive={currentTrack?.id === track.id}
+          isPlaying={isPlaying}
+          onPlay={() => playTrack(track)}
+          onPause={pauseTrack}
+        />
       ))}
     </div>
   );
