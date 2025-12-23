@@ -5,6 +5,7 @@ import Music from "./pages/Music";
 import Podcasts from "./pages/Podcasts";
 import MiniPlayer from "./components/MiniPlayer";
 import { useAuth } from "./context/AuthContext";
+import Playlists from "./pages/Playlists";
 
 const App = () => {
   const { user } = useAuth();
@@ -22,6 +23,7 @@ const App = () => {
         >
           <Link to="/">Music</Link>
           <Link to="/podcasts">Podcasts</Link>
+          <Link to="/playlists">Playlists</Link>
         </nav>
       )}
 
@@ -33,6 +35,8 @@ const App = () => {
           path="/podcasts"
           element={user ? <Podcasts /> : <Login />}
         />
+        <Route path="/playlists" element={user ? <Playlists /> : <Login />} />  
+        
       </Routes>
 
       <MiniPlayer />

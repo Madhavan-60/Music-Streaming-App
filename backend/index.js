@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import trackRoutes from "./src/routes/trackRoutes.js";
 import podcastRoutes from "./src/routes/podcastRoutes.js";
+import playlistRoutes from "./src/routes/playlistRoutes.js";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/tracks", trackRoutes);
 app.use("/api/podcasts", podcastRoutes);
+app.use("/api/playlists", playlistRoutes);  
 
 
 app.get("/", (req, res) => {
