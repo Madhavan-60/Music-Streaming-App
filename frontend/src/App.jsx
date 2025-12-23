@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Music from "./pages/Music";
+import MiniPlayer from "./components/MiniPlayer";
 import { useAuth } from "./context/AuthContext";
-
-const Home = () => <h1>Home (Protected)</h1>;
 
 const App = () => {
   const { user } = useAuth();
@@ -13,11 +13,11 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route
-          path="/"
-          element={user ? <Home /> : <Login />}
-        />
+        <Route path="/" element={user ? <Music /> : <Login />} />
       </Routes>
+
+      {/* GLOBAL PLAYER */}
+      <MiniPlayer />
     </BrowserRouter>
   );
 };
