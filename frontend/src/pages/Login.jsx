@@ -22,7 +22,17 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <form
+  onSubmit={handleLogin}
+  style={{
+    width: "300px",
+    margin: "100px auto",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  }}
+>
+
       <h2>Login</h2>
       <input
         type="email"
@@ -36,9 +46,13 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
+
       <button type="submit">Login</button>
     </form>
   );
 };
 
 export default Login;
+<p>
+  Don’t have an account? <a href="/signup">Signup</a>
+</p>

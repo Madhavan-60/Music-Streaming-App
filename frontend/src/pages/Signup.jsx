@@ -23,7 +23,17 @@ const Signup = () => {
   };
 
   return (
-    <form onSubmit={handleSignup}>
+    <form
+  onSubmit={handleSignup}
+  style={{
+    width: "300px",
+    margin: "100px auto",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  }}
+>
+
       <h2>Signup</h2>
       <input
         type="email"
