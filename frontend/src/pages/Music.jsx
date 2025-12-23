@@ -28,10 +28,12 @@ const Music = () => {
       {/* CATEGORY FILTER */}
       <div style={{ marginBottom: "15px" }}>
         <label>Category: </label>
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
+       <select
+     className="bg-gray-800 text-white border border-gray-600 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+     value={category}
+    onChange={(e) => setCategory(e.target.value)}
+>
+
           {categories.map((cat) => (
             <option key={cat}>{cat}</option>
           ))}
