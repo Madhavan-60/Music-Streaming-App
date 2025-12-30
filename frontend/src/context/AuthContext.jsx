@@ -8,13 +8,11 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Get current session
     supabase.auth.getSession().then(({ data }) => {
       setUser(data?.session?.user ?? null);
       setLoading(false);
     });
 
-    // Listen to auth changes
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setUser(session?.user ?? null);
@@ -26,8 +24,14 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  // ✅ ADD THIS
+  const signOut = async () => {
+  await supabase.auth.signOut({ scope: "local" });
+  setUser(null);
+};
+
   return (
-    <AuthContext.Provider value={{ user }}>
+    <AuthContext.Provider value={{ user, signOut }}>
       {!loading && children}
     </AuthContext.Provider>
   );

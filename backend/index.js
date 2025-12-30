@@ -5,6 +5,7 @@ import trackRoutes from "./src/routes/trackRoutes.js";
 import podcastRoutes from "./src/routes/podcastRoutes.js";
 import playlistRoutes from "./src/routes/playlistRoutes.js";
 import recentlyPlayedRoutes from "./src/routes/recentlyPlayedRoutes.js";
+import adminRoutes from "./src/routes/adminRoutes.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use("/api/tracks", trackRoutes);
 app.use("/api/podcasts", podcastRoutes);
 app.use("/api/playlists", playlistRoutes);  
 app.use("/api/recent", recentlyPlayedRoutes);
+app.use("/api/admin", adminRoutes);
 
 
 app.get("/", (req, res) => {
